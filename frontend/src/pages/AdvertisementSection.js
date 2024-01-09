@@ -21,6 +21,7 @@ function AdvertisementSection() {
         <img src={Planes1} alt="Imagen Planes" className="advertisement-image" /><br/><br/><br/>
         <img src={Planes2} alt="Imagen Planes" className="advertisement-image" /><br/><br/><br/>
         <img src={Planes3} alt="Imagen Planes" className="advertisement-image" />
+        
       </div>
     </center>
   );

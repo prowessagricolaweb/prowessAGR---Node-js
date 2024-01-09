@@ -11,13 +11,18 @@ function PagoPage() {
   const [expiryMonth, setExpiryMonth] = useState('');
   const [expiryYear, setExpiryYear] = useState('');
   const [cvv, setCVV] = useState('');
-  const [totalAmount, setTotalAmount] = useState(100);
+const [totalAmount, setTotalAmount] = useState(0);
 
-  const handlePayment = () => {
-    // Aquí puedes agregar la lógica de procesamiento de pago.
-    // Esto podría incluir una llamada a una API de pago o realizar alguna acción en el servidor.
-    alert('¡Pago procesado con éxito!');
-  };
+// Luego, en tu lógica de manejo de pago, actualiza el valor de totalAmount según sea necesario
+const handlePayment = () => {
+  // Supongamos que obtienes el monto total de alguna manera, y luego lo estableces usando setTotalAmount
+  const total = /* Aquí realiza tu cálculo */ 100; // Por ejemplo, asumimos que el monto total es 100
+
+  setTotalAmount(total);
+
+  // Además de otras acciones de procesamiento de pago
+  alert('¡Pago procesado con éxito!');
+};
 
   return (
     <div className="pagopage">
