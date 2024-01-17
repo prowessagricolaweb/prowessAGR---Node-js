@@ -95,7 +95,6 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
                     value={editedProduct.pro_medida}
                     onChange={handleInputChange}
                   >
-                    <option value=""></option>
                     <option value="Kg">Kilogramo</option>
                     <option value="Gr">Gramo</option>
                     <option value="Lb">Libra</option>
