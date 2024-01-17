@@ -166,7 +166,7 @@ function StorePage({ cart, addToCart, removeFromCart }) {
                 <h3>{product.pro_nombre}</h3>
                 <p><b>Precio:</b> ${product.pro_precio}</p>
 
-                <p><b>Cantidad disponible:</b> {product.pro_stock + ' ' + product.pro_medida}</p>
+                <p><b>Peso del producto:</b> {product.pro_stock + ' ' + product.pro_medida}</p>
                 <p><b>Vendedor:</b> {product.pro_vendedor}</p>
 
                 <div className="product-actions">
