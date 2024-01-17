@@ -5,6 +5,7 @@ import instagram from '../imagenes/ig.png';
 import mundo from '../imagenes/mundo.png';
 import tiktok from '../imagenes/tiktok.png';
 import whatsapp from '../imagenes/whatsapp.png';
+import levantamientoinf from '../imagenes/levantamientoinf.png';
 
 function Footer() {
   return (
@@ -25,6 +26,10 @@ function Footer() {
         </a>
         <a href="https://api.whatsapp.com/send?phone=593992847677" target="_blank" rel="noopener noreferrer">
           <img src={whatsapp} alt="Whatsapp" />
+        </a>
+        <p>LEVANTAMIENTO DE INFORMACIÓN</p>
+        <a href="https://informacion.prowessec.com/" target="_blank" rel="noopener noreferrer">
+          <img src={levantamientoinf} alt="Levantamiento de Información" />
         </a>
         <p>Todos los derechos reservados &copy; {new Date().getFullYear()} Prowess</p>
         <p>Revisa nuestros <a href='terms&conditions'>Términos y Condiciones</a></p>
