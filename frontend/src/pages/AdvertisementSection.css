@@ -1,11 +1,22 @@
-/* AdvertisementSection.css */
+.image-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Espacio entre las filas, ajusta según sea necesario */
+}
+
+
 
 .advertisement-section {
   margin-top: 20px; /* Ajusta el margen superior según tus preferencias */
 }
 
 .advertisement-image {
-  max-width: 100%; /* La imagen no superará el ancho del contenedor padre */
+  max-width: 49%; /* La imagen no superará el ancho del contenedor padre */
   height: auto; /* La altura se ajustará automáticamente para mantener la proporción original */
   border: orange; /* Añade un borde si lo deseas */
   border-radius: 5px; /* Añade esquinas redondeadas si lo deseas */
