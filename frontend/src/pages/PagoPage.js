@@ -1,63 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './PagoPage.css';
-import Visa from '../imagenes/Visa.png';
-import Mastercard from '../imagenes/Mastercard.png';
-import Paypal from '../imagenes/Paypal.png';
+import { Navigate } from 'react-router-dom';
+
+import Check from '../imagenes/Check.png';
 
 function PagoPage() {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
 
-  const [totalAmount, setTotalAmount] = useState(0);
+  // Utiliza useEffect para llamar a handlePayment cuando se monta el componente
+  useEffect(() => {
+    handlePayment();
+  }, []); // El segundo parámetro [] asegura que se llame solo una vez al montarse el componente
 
   const handlePayment = () => {
     // Set the payment success state after successful payment
     setPaymentSuccess(true);
   };
 
+  const [redirect, setRedirect] = useState(false);
+
+  const handleBuyButtonClick = () => {
+    setRedirect(true);
+  }
+
+  if (redirect) {
+    return <Navigate to="/tienda" />;
+  }
+
+ 
+
   return (
     <div className="pagopage-container">
       <div className="pagopage-form">
-        {!paymentSuccess && (
-          <>
-            <div className="pagopage-image-container">
-              <img src={Visa} alt="Imagen Pago" className="pagopage-image" />
-              <img src={Mastercard} alt="Imagen Pago" className="pagopage-image" />
-              <img src={Paypal} alt="Imagen Pago" className="pagopage-image" />
-            </div>
-            <br />
-            <button onClick={handlePayment} className="pagopage-button">
-              Pagar
-            </button>
-          </>
-        )}
+        
         {paymentSuccess && (
           <>
-                <div style={{ textAlign: 'center' }}>
-      <h2>Su pago se ha completado correctamente</h2>
-    </div>
+          
+            <div className='AboutUsInfo h1'>
+              <h1>Su pago se ha completado correctamente</h1>
+            </div>
             <div className="pagopage-factura-container">
+            <img src={Check} alt="Imagen Pago" className="pagopage-image" />
               <p className="pagopage-factura-datos">
                 <span className="pagopage-factura-label">Número de Orden:</span>
                 349646148
               </p>
               <p className="pagopage-factura-datos">
-                <span className="pagopage-factura-label">ID Organización:</span>
-                AR-IMCO13-LACNIC
+                <span className="pagopage-factura-label">Vendedor:</span>
+                Maria
               </p>
               <p className="pagopage-factura-datos">
-                <span className="pagopage-factura-label">Nro. Factura:</span>
-                7444
+                <span className="pagopage-factura-label">Compra:</span>
+                Uvas
               </p>
               <p className="pagopage-factura-datos">
-                <span className="pagopage-factura-label">Importe:</span>
-                $22.00
+                <span className="pagopage-factura-label">Cantidad:</span>
+                50 Lb
               </p>
               <p className="pagopage-gracias">A la brevedad recibirá su comprobante de pago</p>
+              <p className="pagopage-gracias">Gracias por su compra!</p>
             </div>
-            <p className="pagopage-gracias">Gracias por su compra!</p>
-            <button class="seguir-comprando">Seguir comprando</button>
+           
+            <button className="btn-buy" onClick={handleBuyButtonClick}>
+              <b>Seguir comprando</b>
+            </button>
+           
           </>
-          
         )}
       </div>
     </div>
