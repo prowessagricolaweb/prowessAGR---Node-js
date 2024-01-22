@@ -24,9 +24,9 @@ import PagoPage from "./pages/PagoPage";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState([]);
-  const [user, setUser] = useState([]);
   const [token, setToken] = useState(null);
   const [role, setRole] = useState("default");
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     if (token !== null) {
@@ -41,19 +41,33 @@ function App() {
     }
   }, [token]);
 
+  useEffect(() => {
+    const calculateTotal = () => {
+      if (!cart) {
+        return 0;
+      }
+      const totalAmount = cart.reduce(
+        (sum, product) => sum + product.pro_precio * product.cantidad,
+        0
+      );
+      setTotal(totalAmount);
+    };
+
+    calculateTotal();
+  }, [cart]);
+
   const checkAuth = async (token) => {
     let response = await getTokenData(token);
     if (response && response.data) {
       const data = response.data;
       setRole(data.data.rol);
-      console.log(response.data);
       setIsLoggedIn(true);
     } else {
       localStorage.removeItem("token");
       setIsLoggedIn(false);
-
     }
   };
+
   const addToCart = (product) => {
     const existingProductIndex = cart.findIndex(
       (item) => item.id === product.id
@@ -70,7 +84,6 @@ function App() {
 
   const removeFromCart = (productToRemove) => {
     const updatedCart = cart.filter((product) => product !== productToRemove);
-    console.log("App", updatedCart);
     setCart(updatedCart);
   };
 
@@ -80,7 +93,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
         <Route path="/Anuncios" element={<AdvertisementSection />} />
-        <Route path="/pago" element={<PagoPage />} /> 
+        <Route path="/pago" element={<PagoPage cart={cart} total={total} />} />
         <Route
           path="/tienda"
           element={
