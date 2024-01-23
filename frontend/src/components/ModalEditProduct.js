@@ -109,11 +109,12 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
                 value={editedProduct.pro_categoria}
                 onChange={handleInputChange}
               >
-                {categorias.map((categoria) => (
-                  <option key={categoria.id} value={categoria.cat_nombre}>
-                    {categoria.cat_nombre}
-                  </option>
-                ))}
+                <option value="Fruta">Fruta</option>
+                    <option value="Grano">Grano</option>
+                    <option value="Verdura">Verdura</option>
+                    <option value="Fruto seco">Fruto seco</option>
+                    <option value="Hortaliza">Hortaliza</option>
+                    <option value="Tubérculo">Tubérculo</option>
               </select>              
               </div>
 
