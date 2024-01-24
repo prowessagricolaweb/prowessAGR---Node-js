@@ -100,6 +100,16 @@ function VendorsPage() {
     }
   }, [vendorToUpdate]);
 
+  useEffect(() => {
+    // Filtra los vendedores según el término de búsqueda
+    const filteredVendors = vendors.filter((vendor) =>
+      vendor.name && vendor.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+    // Actualiza la lista de vendedores según el término de búsqueda
+    setVendors(filteredVendors);
+  }, [searchTerm]);
+
   const handleUpdateVendor = () => {
     if (!vendorToUpdate) {
       return;
@@ -142,14 +152,14 @@ function VendorsPage() {
         Agregar Vendedor
       </button><br/>
 
-      <SearchBar
-        searchTerm={searchTerm}
-        sortOption={sortOption}
-        handleSearch={handleSearch}
-        handleSortChange={handleSortChange}
-        showPriceOption={false}
-        showCategoryOption={false}
+      <div className="search-bar-vendor">
+      <input
+        type="text"
+        placeholder="Buscar por nombre"
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.target.value)}
       />
+    </div>
 
     <div>
     <ModalEditVendor
