@@ -108,6 +108,17 @@ function VendorsPage() {
   
     // Actualiza la lista de vendedores según el término de búsqueda
     setVendors(filteredVendors);
+    if (!searchTerm) {
+      fetch(`${WEBURL}fb/vendedor/getSeller`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Error en la solicitud al servidor');
+          }
+          return response.json();
+        })
+        .then((data) => setVendors(data))
+        .catch((error) => console.error('Error al cargar los vendedores', error));
+    }
   }, [searchTerm]);
 
   const handleUpdateVendor = () => {
