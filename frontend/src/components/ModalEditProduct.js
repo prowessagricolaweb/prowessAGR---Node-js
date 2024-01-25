@@ -121,7 +121,7 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
               <div class="form-group">
               <label htmlFor="pro_vendedor">Vendedor:</label>
               <ReactSelect
-                  defaultValue={{ value: 'Vendedor', label: 'None' }}
+                  defaultValue={{ value: 'Vendedor', label: 'Ninguno' }}
                   id="pro_vendedor"
                   name="pro_vendedor"
                   value={{ value: editedProduct.pro_vendedor, label: editedProduct.pro_vendedor }}
@@ -135,10 +135,23 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
                   styles={{
                     control: (provided) => ({
                       ...provided,
-                      width: '200px', 
+                      width: '200px',
+                    }),
+                    option: (provided, state) => ({
+                      ...provided,
+                      backgroundColor: state.isSelected ? '#007bff' : '#fff',
+                      color: state.isSelected ? '#fff' : '#000',
+                      ':hover': {
+                        backgroundColor: '#007bff',
+                        color: '#fff',
+                      },
+                    }),
+                    menu: (provided) => ({
+                      ...provided,
+                      maxHeight: '200px', 
                     }),
                   }}
-                />
+                  />
             </div>
 
             <div className="form-group">
