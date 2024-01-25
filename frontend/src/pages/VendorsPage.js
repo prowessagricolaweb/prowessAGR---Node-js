@@ -164,9 +164,9 @@ function VendorsPage() {
       </button><br/>
 
       <div className="search-bar-vendor">
+      <label>Filtrar por Nombre:</label>
       <input
         type="text"
-        placeholder="Buscar por nombre"
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}
       />

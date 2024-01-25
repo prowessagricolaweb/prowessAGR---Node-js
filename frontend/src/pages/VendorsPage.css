@@ -29,6 +29,17 @@ h2 {
   border-radius: 4px;
 }
 
+.search-bar-vendor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  text-shadow:
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
+}
+
 .vendor-list {
   display: grid;
   justify-content: center;
