@@ -15,7 +15,13 @@
       orange,
     /* Sombra en la esquina inferior izquierda (x, y, tamaño, color) */ 1px 1px
       0 orange;
-    margin-top: -60px;
+    margin-top: -20px;
+    margin-bottom: -4px;
+}
+
+.about-us-text {
+  line-height: 1.5;
+  margin-bottom: -4px;
 }
 
 .AboutUsInfo h2 {
@@ -54,12 +60,12 @@
   color: white;
 }
 
-.mision,
 .objetives {
   max-width: 90%;
   max-height: auto;
   margin: 5px;
-  text-align: justify;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .about-image {
@@ -69,6 +75,7 @@
   max-width: 250px;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 5px;
+  margin-top: -30px;
 }
 
 @media (min-width: 768px) {
@@ -130,4 +137,53 @@
   h3 {
     font-size: 20px; /* Reducción del tamaño de fuente para pantallas pequeñas */
   }
+}
+
+.about-prowess {
+  margin-top: -45px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.about-image-vision {
+
+max-width: 65%;
+border: 2px solid rgb(0, 0, 0);
+border-radius: 5px;
+}
+
+.about-image-mision {
+
+  max-width: 85%;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+.about-image-general  {
+
+  max-width: 70%;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+.about-image-especifico  {
+
+  max-width: 70%;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  margin-left: 45px;
+}
+
+.mision {
+  line-height: 1.5;
+}
+
+.general-text {
+  text-align: justify;
+  line-height: 1.5
+}
+
+.especifico-text {
+  text-align: justify;
+  line-height: 1.5
 }
