@@ -2,12 +2,40 @@
   color: #fff;
   padding: 20px 0;
   text-align: center;
-  margin-top: 42px;
+  margin-top: -85px;
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.footer-info {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  width: 124%; 
+  margin-left: -169px; 
+  margin-right: -150px; 
+  font-size: 14px; 
+  margin-bottom: -30px;
+}
+
+.footer-info p {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.footer-info a {
+  color: #ffd700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin: 0;
+}
+
+.footer-info a:hover {
+  color: #fff;
 }
 
 .icon {
