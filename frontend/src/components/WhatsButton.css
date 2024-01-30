@@ -1,0 +1,36 @@
+.btn-whatsapp {
+    background-color: #4caf50; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 17px; 
+    border-radius: 8px; 
+    transition: background-color 0.3s, box-shadow 0.3s; 
+    cursor: pointer; 
+    text-decoration: none; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    text-align: left;
+    
+    i {
+      margin-right: 0px; 
+      font-size: 20px; 
+      
+    }
+  
+    &:hover {
+      background-color: #45a049; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    }
+  }
+  
+  .btn-whatsapp a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .image-whatsapp {
+
+    max-width: 25px;
+    margin-left: 120px;
+    margin-top: -23px;
+  }

@@ -1,17 +1,31 @@
-/* PagoPage.css */
+body {
+  font-family: 'Electrolize', sans-serif;
+  background-color: #f4f4f4;
+}
+
+.AboutUsInfo h1 {
+  color: white;
+  text-shadow: -1px -1px 0 greenyellow,
+    1px -1px 0 orange,
+    -1px 1px 0 orange,
+    1px 1px 0 orange;
+  margin-top: -30px;
+}
 
 .pagopage {
-  font-family: 'Electrolize', sans-serif;
-  width: 400px; /* Ajusté el ancho para que coincida con el ejemplo anterior */
-  margin: 0 auto;
-  margin-top: 20px; /* Modifiqué el margen superior */
-  margin-bottom: 20px; /* Modifiqué el margen inferior */
+  width: 90%; /* Cambié el ancho a 90% para hacerlo más delgado */
+  margin: 50px auto;
   padding: 20px;
-  border-radius: 8px; /* Ajusté el radio de borde */
+  border-radius: 8px;
   background-color: rgba(47, 134, 166, 0.3);
   color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añadí sombra */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border: 1px solid #FF8C00;
+}
+
+.pagopage h2 {
+  margin-top: 0;
+  text-align: center;
 }
 
 .pagopage p {
@@ -25,13 +39,107 @@
   box-sizing: border-box;
 }
 
+.pagopage button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #FF8C00;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagopage button:hover {
+  background-color: #ffa000;
+}
+
 .pagopage-image-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .pagopage-image {
-  width: 70px; /* Ajusta el tamaño según tus necesidades */
-  height: auto; /* Mantiene la proporción original */
-  margin: 0 10px; /* Ajusta el margen según tus necesidades */
+  width: 70px;
+  height: auto;
+  margin: 0 10px;
+}
+
+.pagopage-factura-container {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  width: 50em;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 5px;
+  display: grid;
+  background-color: rgba(47, 134, 166, 0.3);
+  /*background-color: rgba(47, 134, 166, 0.3);*/
+  border: 2px solid orange;
+  color: white;
+  text-align: center; /* Agregado para centrar el contenido */
+}
+
+.pagopage-factura-container img {
+  width: 100%; /* Hace la imagen ocupar el 100% del ancho del contenedor */
+  max-width: 500px; /* Establece un ancho máximo para la imagen si es necesario */
+  height: auto; /* Mantiene la proporción de aspecto de la imagen */
+  margin: 0 auto; /* Centra la imagen horizontalmente dentro del contenedor */
+  display: block; /* Elimina el espacio adicional debajo de la imagen */
+}
+
+
+.pagopage-factura-datos {
+  margin-bottom: 10px;
+}
+
+.pagopage-factura-label {
+  font-weight: bold;
+  display: inline-block;
+  width: 120px;
+}
+
+.pagopage-gracias {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.seguir-comprando {
+  display: block;
+  width: 200px;
+  padding: 10px;
+  margin: 30px auto;
+  background-color: #008CBA;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.seguir-comprando:hover {
+  background-color: #007B9A;
+}
+
+/* Estilos copiados y adaptados para pantallas de 750px o menos */
+@media (max-width: 750px) {
+  .pagopage {
+    width: 100%;
+    margin: 15px;
+  }
+
+  .pagopage input,
+  .pagopage button {
+    margin: 5px;
+  }
+}
+
+.btn-buy {
+margin-left: 670px;
+margin-bottom: 0px;
+font-size: 15px;
+
 }
