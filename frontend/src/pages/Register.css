@@ -29,7 +29,7 @@
 }
 
 .register-input {
-  width: 95%;
+  width: 94%;
   margin-bottom: 10px;
   padding: 10px;
   font-size: 16px;
@@ -38,12 +38,14 @@
 }
 
 .register-inputS {
-  width: 100%;
+  width: 67%;
   margin-bottom: 10px;
   padding: 5px;
-  font-size: 16px;
+  font-size: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-left: 150px;
+  margin-top: 4px;
 }
 
 .register-input[type="file"] {
@@ -72,6 +74,7 @@
   background: linear-gradient(45deg, rgb(0, 110, 255), #ff8c00);
   color: #fff;
   border-radius: 5px;
+  margin-left: 130px;
 }
 
 .register-button {
@@ -136,17 +139,18 @@
 }
 
 .vendedor-section label {
-  font-size: 20px;
+  font-size: 15px;
   color: #ECF0F1;
   display: block;
   text-align: center;
   padding: 5px;
   margin-bottom: 5px;
+  margin-right: 70px;
   transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease; /* Añade transición para opacidad */
   background: linear-gradient(45deg, rgb(0, 110, 255), #ff8c00);
   border-radius: 4px;
   cursor: pointer;
-  width: 90%; /* Ocupa todo el ancho del contenedor */
+  width: 50%; /* Ocupa todo el ancho del contenedor */
   float: left;
 }
 
@@ -165,14 +169,53 @@
   opacity: 1; /* Cambia la opacidad al pasar el mouse */
 }
 
+
 .password-container {
   position: relative;
 }
 
 .password-toggle {
   position: absolute;
-  right: 10px; /* Ajusta este valor según sea necesario */
+  right: 17px; /* Ajusta este valor según sea necesario */
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  margin-top: -7px;
+}
+
+.register-document {
+  margin-right: 339px;
+  margin-bottom: -30px;
+}
+
+.register-subtitle {
+  margin-right: 80px;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.register-inputS-provincia {
+
+  width: 40%;
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 0px;
+  margin-top: 4px;
+
+}
+
+.register-inputS-ciudad {
+
+  width: 40%;
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-left: 89px;
+
 }

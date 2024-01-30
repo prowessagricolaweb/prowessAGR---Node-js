@@ -157,30 +157,30 @@ function StorePage({ cart, addToCart, removeFromCart }) {
           </div>
         </div>
         <div className="products-container">
-          {currentProducts
-            .filter((product) =>
-              selectedCategories.length === 0 || selectedCategories.includes(product.pro_categoria)
-            )
-            .map((product) => (
-              <div key={product.id} className="product-card">
-                <h3>{product.pro_nombre}</h3>
-                <img src={product.pro_imagen} alt={product.pro_name} className="product-image" />
-                <p><b>Precio:</b> ${product.pro_precio}</p>
-                <p><b>Categoría:</b> {product.pro_categoria}</p>
-                <p><b>Cantidad disponible:</b> {product.pro_stock + ' ' + product.pro_medida}</p>
-                <p><b>Vendedor:</b> {product.pro_vendedor}</p>
-
-                <div className="product-actions">
-                  <button onClick={() => addToCart(product)}>
-                    Agregar al carrito
-                    <FontAwesomeIcon className="fa-ican-cartshopping" icon={faCartShopping} />
-                  </button>
-                  <span className="product-info-icon" onClick={() => showProductDetails(product.id)}>
-                  </span>
-                </div>
-              </div>
-            ))}
+  {currentProducts
+    .filter((product) =>
+      selectedCategories.length === 0 || selectedCategories.includes(product.pro_categoria)
+    )
+    .map((product) => (
+      <div key={product.id} className="product-card">
+        <h3>{product.pro_nombre}</h3>
+        <img src={product.pro_imagen} alt={product.pro_name} className="product-image" />
+        <p><b>Información:</b> {product.pro_descripcion}</p>
+        <p><b>Categoría:</b> {product.pro_categoria}</p>
+        <p><b>Peso del producto:</b> {product.pro_stock + ' ' + product.pro_medida}</p>
+        <p><b>Precio:</b> ${product.pro_precio}</p>
+        <p className="disponible-hasta"><b>Disponible hasta:</b> {product.pro_fechaFinal}</p>
+        <div className="product-actions">
+          <button onClick={() => addToCart(product)}>
+            Agregar al carrito
+            <FontAwesomeIcon className="fa-ican-cartshopping" icon={faCartShopping} />
+          </button>
+          <span className="product-info-icon" onClick={() => showProductDetails(product.id)}>
+          </span>
         </div>
+      </div>
+    ))}
+</div>
       </div>
       <div className="pagination">
         <button

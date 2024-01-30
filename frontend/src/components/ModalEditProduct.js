@@ -95,7 +95,6 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
                     value={editedProduct.pro_medida}
                     onChange={handleInputChange}
                   >
-                    <option value=""></option>
                     <option value="Kg">Kilogramo</option>
                     <option value="Gr">Gramo</option>
                     <option value="Lb">Libra</option>
@@ -110,18 +109,19 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
                 value={editedProduct.pro_categoria}
                 onChange={handleInputChange}
               >
-                {categorias.map((categoria) => (
-                  <option key={categoria.id} value={categoria.cat_nombre}>
-                    {categoria.cat_nombre}
-                  </option>
-                ))}
+                <option value="Fruta">Fruta</option>
+                    <option value="Grano">Grano</option>
+                    <option value="Verdura">Verdura</option>
+                    <option value="Fruto seco">Fruto seco</option>
+                    <option value="Hortaliza">Hortaliza</option>
+                    <option value="Tubérculo">Tubérculo</option>
               </select>              
               </div>
 
               <div class="form-group">
               <label htmlFor="pro_vendedor">Vendedor:</label>
               <ReactSelect
-                  defaultValue={{ value: 'Vendedor', label: 'None' }}
+                  defaultValue={{ value: 'Vendedor', label: 'Ninguno' }}
                   id="pro_vendedor"
                   name="pro_vendedor"
                   value={{ value: editedProduct.pro_vendedor, label: editedProduct.pro_vendedor }}
@@ -135,10 +135,23 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
                   styles={{
                     control: (provided) => ({
                       ...provided,
-                      width: '200px', 
+                      width: '200px',
+                    }),
+                    option: (provided, state) => ({
+                      ...provided,
+                      backgroundColor: state.isSelected ? '#007bff' : '#fff',
+                      color: state.isSelected ? '#fff' : '#000',
+                      ':hover': {
+                        backgroundColor: '#007bff',
+                        color: '#fff',
+                      },
+                    }),
+                    menu: (provided) => ({
+                      ...provided,
+                      maxHeight: '200px', 
                     }),
                   }}
-                />
+                  />
             </div>
 
             <div className="form-group">

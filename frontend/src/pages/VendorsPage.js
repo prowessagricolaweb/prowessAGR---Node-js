@@ -100,6 +100,27 @@ function VendorsPage() {
     }
   }, [vendorToUpdate]);
 
+  useEffect(() => {
+    // Filtra los vendedores según el término de búsqueda
+    const filteredVendors = vendors.filter((vendor) =>
+      vendor.name && vendor.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+    // Actualiza la lista de vendedores según el término de búsqueda
+    setVendors(filteredVendors);
+    if (!searchTerm) {
+      fetch(`${WEBURL}fb/vendedor/getSeller`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Error en la solicitud al servidor');
+          }
+          return response.json();
+        })
+        .then((data) => setVendors(data))
+        .catch((error) => console.error('Error al cargar los vendedores', error));
+    }
+  }, [searchTerm]);
+
   const handleUpdateVendor = () => {
     if (!vendorToUpdate) {
       return;
@@ -142,14 +163,14 @@ function VendorsPage() {
         Agregar Vendedor
       </button><br/>
 
-      <SearchBar
-        searchTerm={searchTerm}
-        sortOption={sortOption}
-        handleSearch={handleSearch}
-        handleSortChange={handleSortChange}
-        showPriceOption={false}
-        showCategoryOption={false}
+      <div className="search-bar-vendor">
+      <label>Filtrar por Nombre:</label>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.target.value)}
       />
+    </div>
 
     <div>
     <ModalEditVendor
