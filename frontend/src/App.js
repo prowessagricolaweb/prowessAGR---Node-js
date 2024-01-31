@@ -80,7 +80,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
         <Route path="/Anuncios" element={<AdvertisementSection />} />
-        <Route path="/pago" element={<PagoPage />} /> 
+        <Route path="/pago" element={<PagoPage cart={cart} />} /> 
         <Route
           path="/tienda"
           element={
