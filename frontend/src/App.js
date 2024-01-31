@@ -68,19 +68,19 @@ function App() {
     }
   };
 
-  const addToCart = (product) => {
-    const existingProductIndex = cart.findIndex(
-      (item) => item.id === product.id
-    );
-    if (existingProductIndex !== -1) {
-      const updatedCart = [...cart];
-      const existingProduct = updatedCart[existingProductIndex];
-      existingProduct.cantidad += 1;
-      setCart(updatedCart);
-    } else {
-      setCart([...cart, { ...product, cantidad: 1 }]);
-    }
-  };
+ const addToCart = (product, vendorWhatsApp) => {
+  const existingProductIndex = cart.findIndex((item) => item.id === product.id);
+  if (existingProductIndex !== -1) {
+    const updatedCart = [...cart];
+    const existingProduct = updatedCart[existingProductIndex];
+    existingProduct.cantidad += 1;
+    setCart(updatedCart);
+  } else {
+    // Agregar la información del vendedor al producto
+    const productWithVendor = { ...product, cantidad: 1, vendorWhatsApp: vendorWhatsApp };
+    setCart([...cart, productWithVendor]);
+  }
+};
 
   const removeFromCart = (productToRemove) => {
     const updatedCart = cart.filter((product) => product !== productToRemove);
@@ -107,6 +107,8 @@ function App() {
 
         <Route
           path="/carrito"
+          render={() => <ShoppingCart /* ... pasar props según sea necesario */ vendedorId={65161651896} />}
+
           element={
             <ShoppingCart
               cart={cart}

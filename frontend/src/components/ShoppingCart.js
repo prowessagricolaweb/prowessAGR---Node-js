@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import './ShoppingCart.css';
 import { Navigate } from 'react-router-dom';
-function ShoppingCart({ cart, addToCart, removeFromCart }) {
+function ShoppingCart({ cart, addToCart, removeFromCart, vendedorId }) {
   const handleQuantityInput = (event, product) => {
     const inputValue = event.target.value;
     const updatedCart = [...cart];
