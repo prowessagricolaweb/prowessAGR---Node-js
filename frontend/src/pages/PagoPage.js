@@ -72,10 +72,27 @@ function PagoPage({ cart, vendors, removeFromCart, VendorsPage }) {
               
               {/* Utiliza el nombre del vendedor para obtener el número de teléfono correspondiente */}
               <WhatsButton phoneNumber={phoneNumber} />
-              <p className="pagopage-gracias">En breve nos pondremos en contacto con usted</p>
+              <p className="pagopage-gracias">En breve nos pondremos en contacto con usted</p>  
+
+
+              <div>
+      <div className="progress-bar">
+        <div className="progress-fill done"></div>
+        <div className="progress-step done">
+          <p>Selección</p>
+        </div>
+        <div className="progress-step done">
+          <p>Compra</p>
+        </div>
+        <div className="progress-step">
+          <p>Pago</p>
+        </div>
+      </div>
+    </div>
+
             </div>
 
-
+           
             <button className="btn-buy" onClick={handleBuyButtonClick}>
               <b>Seguir comprando</b>
             </button>
