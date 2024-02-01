@@ -158,3 +158,41 @@ body {
   margin-bottom: 30px;
   margin-top: -15px;
   }
+
+  .progress-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%; /* Ajusta el ancho de la barra de progreso */
+    height: 10px; /* Ajusta la altura de la barra de progreso */
+    padding: 20px 0;
+    margin-top: 50px; /* Ajusta la posición vertical de la barra de progreso */
+    background: #ddd;
+    border-radius: 5px; /* Ajusta el radio de la esquina de la barra de progreso */
+    position: relative;
+  }
+  
+  .progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #4caf50;
+  }
+  
+  .progress-fill.done {
+    width: 66%; /* Cambia este valor para ajustar el progreso */
+  }
+  
+  .progress-step {
+    width: 30%;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .progress-step p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: -30px;
+  }

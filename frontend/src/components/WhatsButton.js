@@ -16,17 +16,18 @@ function WhatsButton({ phoneNumber }) {
 }
 
 export default WhatsButton;*/
-
+//0999582927
 
 import React from "react";
 import './WhatsButton.css';
 import whatsapp from '../imagenes/whatsapp.png';
 
 function WhatsButton() {
-  const phoneNumber = '0999582927';  // Coloca aquí el número de teléfono deseado
+  const phoneNumber = '+593997384553';  // Coloca aquí el número de teléfono deseado
+  const message = 'Hola, hemos recibido una compra de su producto. En breve llegará la confirmación.';
 
   return (
-    <a href={`https://wa.me/${phoneNumber}`} target="_blank" rel="noopener noreferrer">
+    <a href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`} target="_blank" rel="noopener noreferrer">
       <button className="btn btn-success btn-whatsapp">
         <i className="fab fa-whatsapp"></i> ¡Contáctanos!
         <div className="image-whatsapp">
