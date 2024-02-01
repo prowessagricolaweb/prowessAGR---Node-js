@@ -1,4 +1,4 @@
-* PagoPage.css */
+
 
 /* PagoPage.css */
 
@@ -66,7 +66,7 @@ body {
 }
 
 .pagopage-image {
-  width: 70px;
+  width: 50px; /* Ajusta el valor según el tamaño deseado */
   height: auto;
   margin: 0 10px;
 }
