@@ -24,6 +24,8 @@ function VendorsPage() {
 
   const vendorsPerPage = 10;
 
+
+  
   const startIndex = (currentPage - 1) * vendorsPerPage;
   const endIndex = startIndex + vendorsPerPage;
   const currentVendors = vendors.slice(startIndex, endIndex);

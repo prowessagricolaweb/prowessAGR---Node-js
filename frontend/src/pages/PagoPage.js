@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './PagoPage.css';
 import { Navigate } from 'react-router-dom';
 import Check from '../imagenes/Check.png';
-import WhatsButton from '../components/WhatsButton';
-import ModalEditVendors from '../components/ModalEditVendors';
+import WhatsButton from '../components/WhatsButton'; // Asegúrate de importar WhatsButton
+
+//import ModalEditVendors from '../components/ModalEditVendors';
 import VendorsPage from './VendorsPage';
 
-function PagoPage({ cart, addToCart, removeFromCart }) {
+function PagoPage({ cart, vendors, removeFromCart }) {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const phoneNumber = '0999582927'; // Número de teléfono de ejemplo (puedes cambiarlo según tus necesidades)
+  const vendor = vendors && cart && cart.pro_vendedor ? vendors.find(v => v.name === cart.pro_vendedor) : null;
+  const phoneNumber = vendor && vendor.phoneNumber ? vendor.phoneNumber : '';
+
 
 
   useEffect(() => {
@@ -62,12 +65,15 @@ function PagoPage({ cart, addToCart, removeFromCart }) {
                     <span className="pagopage-factura-label">Cantidad:</span>
                     {product.cantidad} {product.pro_medida}
                   </p>
-                  {/* Utiliza el nombre del vendedor para obtener el número de teléfono correspondiente */}
-                  <WhatsButton phoneNumber={phoneNumber} />
+
+                  
 
                 </div>
               ))}
               <p className="pagopage-gracias">¡Gracias por su compra!</p>
+              
+              {/* Utiliza el nombre del vendedor para obtener el número de teléfono correspondiente */}
+              <WhatsButton phoneNumber={phoneNumber} />
               <p className="pagopage-gracias">En breve nos pondremos en contacto con usted</p>
             </div>
             <button className="btn-buy" onClick={handleBuyButtonClick}>
