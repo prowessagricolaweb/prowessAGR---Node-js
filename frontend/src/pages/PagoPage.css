@@ -65,16 +65,20 @@ body {
   margin-bottom: 20px;
 }
 
+
 .pagopage-image {
-  width: 50px; /* Ajusta el valor según el tamaño deseado */
+  width: 70px;
   height: auto;
   margin: 0 10px;
+  margin-top: 30px;
 }
 
 .pagopage-factura-container {
   margin-right: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
+  width: 50em;
+  margin: 0 auto;
   padding: 10px;
   border-radius: 5px;
   display: grid;
@@ -96,12 +100,14 @@ body {
 
 .pagopage-factura-datos {
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .pagopage-factura-label {
   font-weight: bold;
   display: inline-block;
   width: 120px;
+  text-align: center;
 }
 
 .pagopage-gracias {
@@ -138,3 +144,17 @@ body {
     margin: 5px;
   }
 }
+.btn-buy {
+  margin-left: 670px;
+  margin-bottom: 0px;
+  font-size: 15px;
+  
+  }
+  
+  .img-producto-factura {
+  
+  width: 180px;
+  margin-left: 315px;
+  margin-bottom: 30px;
+  margin-top: -15px;
+  }

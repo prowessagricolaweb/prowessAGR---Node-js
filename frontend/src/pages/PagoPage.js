@@ -7,7 +7,7 @@ import WhatsButton from '../components/WhatsButton'; // Asegúrate de importar W
 //import ModalEditVendors from '../components/ModalEditVendors';
 import VendorsPage from './VendorsPage';
 
-function PagoPage({ cart, vendors, removeFromCart }) {
+function PagoPage({ cart, vendors, removeFromCart, VendorsPage }) {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const vendor = vendors && cart && cart.pro_vendedor ? vendors.find(v => v.name === cart.pro_vendedor) : null;
   const phoneNumber = vendor && vendor.phoneNumber ? vendor.phoneNumber : '';
