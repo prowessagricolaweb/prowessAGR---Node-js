@@ -3,10 +3,14 @@
 
 import React from "react";
 import WhatsButton from "../components/WhatsButton";
+import { useParams } from 'react-router-dom';
+import VendorsPage from "./VendorsPage";
 
-function FinCompra(){
 
-    const num = '0998160293'
+function FinCompra() {
+    const vendor = {
+        whatsappNumber: '0998160293', 
+    };
 
     return (
         <div className="container">
@@ -14,7 +18,7 @@ function FinCompra(){
                 <div className="col-12">
                     <h1>Gracias por su compra</h1>
                     <h2>En breve nos pondremos en contacto con usted</h2>
-                    <WhatsButton number={num} message={"Hola, quiero hacer un pedido"} />
+                    <WhatsButton vendor={vendor} message={"Hola, quiero hacer un pedido"} />
                 </div>
             </div>
         </div>

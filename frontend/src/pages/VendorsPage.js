@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ModalEditVendor from '../components/ModalEditVendors';
 import ModalAddVendor from '../components/ModalAddVendor';
+import { Link } from 'react-router-dom';
+
 
 function VendorsPage() {
   const [vendors, setVendors] = useState([]);
@@ -183,14 +185,14 @@ function VendorsPage() {
       </div>
 
       <div className="vendor-list">
-        {currentVendors.map((vendor) => (
-          <div key={vendor.id} className="vendor-card">
-            
+      {vendors.map((vendor, index) => (         
+         <div key={vendor.id} className="vendor-card">
             <h3>{vendor.name}</h3>
             <p>Ciudad: {vendor.city}</p>
             <p>Dirección: {vendor.address}</p>
             <p>Teléfono: {vendor.phoneNumber}</p>
-            
+            <p>Número de WhatsApp: {vendor.whatsappNumber}</p>
+
             <button
               className="edit-button"
               onClick={() => handleEditVendor(vendor)} // Asegúrate de que `vendor` contenga los datos que necesitas editar
