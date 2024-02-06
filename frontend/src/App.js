@@ -74,13 +74,18 @@ function App() {
     setCart(updatedCart);
   };
 
+
+  const clearCart = () => {
+    setCart([]); // Limpiar el carrito
+  };
+
   return (
     <Router>
-      <NavigationBar isLoggedIn={isLoggedIn} role={role} cart={cart} />
+      <NavigationBar isLoggedIn={isLoggedIn} role={role} cart={cart} clearCart={clearCart} />
       <Routes>
         <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
         <Route path="/Anuncios" element={<AdvertisementSection />} />
-        <Route path="/pago" element={<PagoPage cart={cart} />} /> 
+        <Route path="/pago" element={<PagoPage cart={cart} clearCart={clearCart} />} /> 
         <Route
           path="/tienda"
           element={

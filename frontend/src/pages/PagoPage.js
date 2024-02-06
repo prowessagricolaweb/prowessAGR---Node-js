@@ -1,4 +1,3 @@
-// PagoPage.js
 import React, { useState, useEffect } from 'react';
 import './PagoPage.css';
 import { Navigate } from 'react-router-dom';
@@ -8,7 +7,7 @@ import ModalEditVendors from '../components/ModalEditVendors';
 import VendorsPage from './VendorsPage';
 
 
-function PagoPage({ cart, vendor }) {
+function PagoPage({ cart, vendor, clearCart }) {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
 
 
@@ -25,10 +24,19 @@ function PagoPage({ cart, vendor }) {
   const handleBuyButtonClick = () => {
     setRedirect(true);
   };
+  
+  const generateRandomOrderNumber = () => {
+    return Math.floor(Math.random() * 900000) + 100000;
+  };
 
   if (redirect) {
     return <Navigate to="/tienda" />;
   }
+  
+  const handleContinueShoppingClick = () => {
+    clearCart();
+    setRedirect(true);
+  };
 
   return (
     <div className="pagopage-container">
@@ -42,13 +50,13 @@ function PagoPage({ cart, vendor }) {
               <img src={Check} alt="Imagen Pago" className="pagopage-image" />
               {cart && cart.map((product, index, vendor) => (
                 <div key={index}>
-                  {/* Detalles del producto en la factura */}
+                  
                   <p className="pagopage-factura-datos">
                     <div className='img-producto-factura'>
                       <img src={product.pro_imagen} alt={product.pro_nombre} />
                     </div>
                     <span className="pagopage-factura-label">Nº de orden:</span>
-                    349646148
+                    {generateRandomOrderNumber()}
                   </p>
                   <p className="pagopage-factura-datos">
                     <span className="pagopage-factura-label">Vendedor:</span>
@@ -71,7 +79,7 @@ function PagoPage({ cart, vendor }) {
               ))}
               <p className="pagopage-gracias">En breve nos pondremos en contacto con usted</p>
             </div>
-            <button className="btn-buy" onClick={handleBuyButtonClick}>
+            <button className="btn-buy" onClick={handleContinueShoppingClick}>
               <b>Seguir comprando</b>
             </button>
           </>
