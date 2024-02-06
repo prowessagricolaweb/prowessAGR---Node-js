@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import './ShoppingCart.css';
 import { Navigate } from 'react-router-dom';
+
 function ShoppingCart({ cart, addToCart, removeFromCart }) {
+  const [cartProducts, setCartProducts] = useState([]);
+  const [redirect, setRedirect] = useState(false);
+
   const handleQuantityInput = (event, product) => {
     const inputValue = event.target.value;
     const updatedCart = [...cart];
@@ -17,7 +21,7 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
     const inputValue = event.target.value;
     const updatedCart = [...cart];
     const existingProductIndex = updatedCart.findIndex((item) => item.id === product.id);
-  
+
     if (isNaN(inputValue) || inputValue < 1) {
       updatedCart[existingProductIndex].cantidad = 1;
     } else if (inputValue >= 1) {
@@ -25,14 +29,10 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
     } else {
       updatedCart[existingProductIndex].cantidad = 1;
     }
-  
+
     setCartProducts(updatedCart);
   };
-  
 
-
-  const [cartProducts, setCartProducts] = useState([]);
-  const [redirect, setRedirect] = useState(false);
   const handleRemoveFromCart = (product) => {
     const updatedCart = [...cart];
     const existingProductIndex = updatedCart.findIndex((item) => item.id === product.id);
@@ -49,7 +49,7 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
 
   const handleBuyButtonClick = () => {
     setRedirect(true);
-  }
+  };
 
   if (redirect) {
     return <Navigate to="/pago" />;
@@ -58,17 +58,33 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
   const handleDeleteFromCart = (product) => {
     removeFromCart(product);
   };
+
   const calculateTotalPrice = () => {
     if (!cart) {
-      return 0;
+      return {
+        subtotal: "0.00",
+        shippingPrice: "3.00",
+        total: "3.00",
+      };
     }
-    const total = cart.reduce(
+
+    const subtotal = cart.reduce(
       (sum, product) => sum + product.pro_precio * product.cantidad,
       0
     );
-    return total;
+
+    const shippingPrice = 3;
+
+    const total = subtotal + shippingPrice;
+
+    return {
+      subtotal: subtotal.toFixed(2),
+      shippingPrice: shippingPrice.toFixed(2),
+      total: total.toFixed(2),
+    };
   };
   const addedProducts = cart ? cart.filter((product) => product.cantidad > 0) : [];
+
   return (
     <div className="shopping-cart">
       <div className="presentation">
@@ -89,11 +105,9 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
                 <p className='separador-p'><b>Precio:</b> ${product.pro_precio} x {product.pro_medida}</p>
                 <p className='separador-p'><b>Cantidad disponible:</b> {product.pro_stock} {product.pro_medida}</p>
                 <p className='separador-p'><b>Vendedor:</b> {product.pro_vendedor}</p>
-
               </div>
               <div className='cantidad-product'>
                 <button className='btn-add' onClick={() => addToCart(product)}>+</button>
-
                 <div className='cantidad'>
                   <label htmlFor="pro_stock">Cantidad</label>
                   <input
@@ -104,8 +118,6 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
                     onInput={(e) => handleQuantityInput(e, product)}
                     onBlur={(e) => handleQuantityBlur(e, product)}
                   />
-
-
                 </div>
                 <button className='btn-remove' onClick={() => handleRemoveFromCart(product)}>-</button>
               </div>
@@ -121,17 +133,20 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
               </div>
             </div>
           ))}
-          <div className="total-price">
-            <p>
-              <b>Precio Total de la Compra:</b> ${calculateTotalPrice().toFixed(2)}
-            </p>
-            <button className="btn-buy" onClick={handleBuyButtonClick}>
-              <b>Comprar</b>
-            </button>
-          </div>
         </div>
+        <div className="total-price">
+          <p>
+            <span><b>Subtotal:</b> $  {calculateTotalPrice().subtotal}</span>
+            <span><b>Precio envío:</b> ${calculateTotalPrice().shippingPrice}</span>
+            <span><b>Total a pagar:</b> ${calculateTotalPrice().total}</span>
+          </p>
+        </div>
+        <button className="btn-buy" onClick={handleBuyButtonClick}>
+          <b>Generar compra</b>
+        </button>
       </div>
     </div>
   );
 }
+
 export default ShoppingCart;
