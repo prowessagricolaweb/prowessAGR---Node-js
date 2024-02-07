@@ -27,6 +27,7 @@ function App() {
   const [token, setToken] = useState(null);
   const [role, setRole] = useState("default");
   const [total, setTotal] = useState(0);
+  const [orden,setOrden] = useState([]);
 
   useEffect(() => {
     if (token !== null) {
@@ -89,11 +90,11 @@ function App() {
 
   return (
     <Router>
-      <NavigationBar isLoggedIn={isLoggedIn} role={role} cart={cart} />
+      <NavigationBar isLoggedIn={isLoggedIn} role={role} cart={cart} orden={orden}/>
       <Routes>
         <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
         <Route path="/Anuncios" element={<AdvertisementSection />} />
-        <Route path="/pago" element={<PagoPage cart={cart} total={total} />} />
+        <Route path="/pago" element={<PagoPage cart={cart} total={total} token={token}/>} />
         <Route
           path="/tienda"
           element={
@@ -114,6 +115,7 @@ function App() {
               cart={cart}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
+              setOrden = {setOrden}
             />
           }
         />

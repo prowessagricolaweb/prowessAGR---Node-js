@@ -5,11 +5,12 @@ import Check from '../imagenes/Check.png';
 import WhatsButton from '../components/WhatsButton';
 import ModalEditVendors from '../components/ModalEditVendors';
 import VendorsPage from './VendorsPage';
+import { getTokenData } from '../services/auth';
 
 
-function PagoPage({ cart, vendor, clearCart }) {
+function PagoPage({ cart, vendor, clearCart, orden }) {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-
+  const [usuario, setUsuario] = useState([]);
 
   useEffect(() => {
     handlePayment();
@@ -18,6 +19,7 @@ function PagoPage({ cart, vendor, clearCart }) {
   const handlePayment = () => {
     setPaymentSuccess(true);
   };
+
 
   const [redirect, setRedirect] = useState(false);
 

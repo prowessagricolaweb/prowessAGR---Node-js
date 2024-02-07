@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheckToSlot, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './ShoppingCart.css';
 import { Navigate } from 'react-router-dom';
+import { createOrder } from '../services/order';
+import { checkToken} from '../services/auth';  
 
-function ShoppingCart({ cart, addToCart, removeFromCart }) {
+function ShoppingCart({ cart, addToCart, removeFromCart, setOrden}) {
   const [cartProducts, setCartProducts] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const [usuario, setUsuario] = useState([]);
+  const token = localStorage.getItem("token");
 
   const handleQuantityInput = (event, product) => {
     const inputValue = event.target.value;
@@ -16,6 +20,26 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
     updatedCart[existingProductIndex].cantidad = inputValue;
     setCartProducts(updatedCart);
   };
+
+
+  useEffect(() => {
+    if (token !== null) {
+      obtenerDatos();
+    }
+  }, []);
+
+  const obtenerDatos = async () => {
+    const data = await checkToken(token);
+    const usuario = 
+    { 
+      id: data.data.id,
+      nombre: data.data.nombreUsuario,
+      apellido: data.data.apellidoUsuario,
+      email: data.data.correoUsuario,
+      telefono: data.data.telefonoUsuario
+    }
+    setUsuario(usuario);
+  }
 
   const handleQuantityBlur = (event, product) => {
     const inputValue = event.target.value;
@@ -48,8 +72,23 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
   };
 
   const handleBuyButtonClick = () => {
+    var orden = calculateTotalPrice();
+    setOrden(orden);
+    console.log(orden);
+    comprar();
     setRedirect(true);
+
   };
+
+  const comprar = async() => {
+    var orden = calculateTotalPrice();
+    orden.ord_productos = cart;
+    orden.ord_usuario = usuario;
+    orden.ord_fecha = new Date();
+    console.log(orden);
+    setOrden(orden);
+    const response = await createOrder(orden);
+  }
 
   if (redirect) {
     return <Navigate to="/pago" />;
@@ -78,9 +117,9 @@ function ShoppingCart({ cart, addToCart, removeFromCart }) {
     const total = subtotal + shippingPrice;
 
     return {
-      subtotal: subtotal.toFixed(2),
-      shippingPrice: shippingPrice.toFixed(2),
-      total: total.toFixed(2),
+      ord_subtotal: subtotal.toFixed(2),
+      ord_shippingPrice: shippingPrice.toFixed(2),
+      ord_total: total.toFixed(2),
     };
   };
   const addedProducts = cart ? cart.filter((product) => product.cantidad > 0) : [];
