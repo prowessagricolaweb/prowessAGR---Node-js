@@ -140,7 +140,7 @@ function ShoppingCart({ cart, addToCart, removeFromCart, setOrden}) {
               </div>
               <div className='name-product'>
                 <h3>{product.pro_nombre}</h3>
-                <p className='separador-p'><b>Categoria:</b> {product.pro_categoria}</p>
+                <p className='separador-p'><b>Categoría:</b> {product.pro_categoria}</p>
                 <p className='separador-p'><b>Precio:</b> ${product.pro_precio} x {product.pro_medida}</p>
                 <p className='separador-p'><b>Cantidad disponible:</b> {product.pro_stock} {product.pro_medida}</p>
                 <p className='separador-p'><b>Vendedor:</b> {product.pro_vendedor}</p>
