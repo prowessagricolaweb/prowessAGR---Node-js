@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './PagoPage.css';
 import { Navigate } from 'react-router-dom';
 import Check from '../imagenes/Check.png';
-import WhatsButton from '../components/WhatsButton'; // Asegúrate de importar WhatsButton
-
-//import ModalEditVendors from '../components/ModalEditVendors';
+import WhatsButton from '../components/WhatsButton';
+import ModalEditVendors from '../components/ModalEditVendors';
 import VendorsPage from './VendorsPage';
 
-function PagoPage({ cart, vendors, removeFromCart, VendorsPage }) {
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const vendor = vendors && cart && cart.pro_vendedor ? vendors.find(v => v.name === cart.pro_vendedor) : null;
-  const phoneNumber = vendor && vendor.phoneNumber ? vendor.phoneNumber : '';
 
+function PagoPage({ cart, vendor, clearCart }) {
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
 
   useEffect(() => {
@@ -27,12 +24,19 @@ function PagoPage({ cart, vendors, removeFromCart, VendorsPage }) {
   const handleBuyButtonClick = () => {
     setRedirect(true);
   };
+  
+  const generateRandomOrderNumber = () => {
+    return Math.floor(Math.random() * 900000) + 100000;
+  };
 
   if (redirect) {
     return <Navigate to="/tienda" />;
   }
-
-
+  
+  const handleContinueShoppingClick = () => {
+    clearCart();
+    setRedirect(true);
+  };
 
   return (
     <div className="pagopage-container">
@@ -44,14 +48,15 @@ function PagoPage({ cart, vendors, removeFromCart, VendorsPage }) {
             </div>
             <div className="pagopage-factura-container">
               <img src={Check} alt="Imagen Pago" className="pagopage-image" />
-              {cart && cart.map((product, index) => (
+              {cart && cart.map((product, index, vendor) => (
                 <div key={index}>
+                  
                   <p className="pagopage-factura-datos">
                     <div className='img-producto-factura'>
                       <img src={product.pro_imagen} alt={product.pro_nombre} />
                     </div>
                     <span className="pagopage-factura-label">Nº de orden:</span>
-                    349646148
+                    {generateRandomOrderNumber()}
                   </p>
                   <p className="pagopage-factura-datos">
                     <span className="pagopage-factura-label">Vendedor:</span>
@@ -65,22 +70,16 @@ function PagoPage({ cart, vendors, removeFromCart, VendorsPage }) {
                     <span className="pagopage-factura-label">Cantidad:</span>
                     {product.cantidad} {product.pro_medida}
                   </p>
+
+                  <p className="pagopage-factura-datos">
+                   </p>
                 </div>
               ))}
-
-              <p className="pagopage-gracias">¡Gracias por su compra!</p>
-              
-              {/* Utiliza el nombre del vendedor para obtener el número de teléfono correspondiente */}
-              <WhatsButton phoneNumber={phoneNumber} />
-              <p className="pagopage-gracias">En breve nos pondremos en contacto con usted</p>  
-
-
- 
-
-            </div>
-
-           
-            <button className="btn-buy" onClick={handleBuyButtonClick}>
+                  <p className="pagopage-gracias">¡Gracias por su compra!</p>
+                   <WhatsButton number={'+593998160293'} message="Hola, he completado mi compra. ¿Podemos ponernos en contacto?"/>              
+                   <p className="pagopage-gracias">En breve nos pondremos en contacto con usted</p>            
+                   </div>
+                  <button className="btn-buy" onClick={handleContinueShoppingClick}>
               <b>Seguir comprando</b>
             </button>
           </>
