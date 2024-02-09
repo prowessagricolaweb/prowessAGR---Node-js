@@ -4,7 +4,7 @@ import ReactSelect from "react-select";
 import { getCategories } from "../services/category";
 import { getSellers } from "../services/seller";
 import { postProduct } from "../services/product";
-const WEBURL = process.env.REACT_APP_API_URL
+const WEBURL = process.env.REACT_APP_API_URL;
 
 const ModalAddProducts = ({ isOpen, onClose }) => {
   const [newProduct, setNewProduct] = useState({
@@ -16,9 +16,10 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
     pro_medida: "",
     pro_vendedor: "",
     pro_fechaFinal: "",
-    pro_fechaInicio:"",
-    pro_estado:"",
-    pro_imagen: null
+    pro_fechaInicio: "",
+    pro_estado: "",
+    pro_imagen: null,
+    pro_numero: "", // Nuevo atributo pro_numero
   });
   const [categorias, setCategorias] = useState([]);
   const [vendedores, setVendedores] = useState([]);
@@ -35,7 +36,6 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
 
     getCategory(token);
     getVendedores(token);
-
   }, [isOpen]);
 
   const getVendedores = async (token) => {
@@ -45,9 +45,9 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
       const data = res.data;
       setVendedores(data);
     } catch (error) {
-      console.error('Error al cargar los vendedores', error);
+      console.error("Error al cargar los vendedores", error);
     }
-  }
+  };
 
   const getCategory = async (token) => {
     try {
@@ -56,7 +56,7 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
       const data = res.data;
       setCategorias(data);
     } catch (error) {
-      console.error('Error al cargar las categorías', error);
+      console.error("Error al cargar las categorías", error);
     }
   };
 
@@ -68,21 +68,20 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
       formData.append("pro_imagen", file);
       setNewProduct((prevState) => ({
         ...prevState,
-        pro_imagen: formData
+        pro_imagen: formData,
       }));
-    }
-    else {
+    } else {
       setNewProduct({
         ...newProduct,
-        [name]: value
+        [name]: value,
       });
     }
   };
 
-  const handleSave = async() => {
-    const {pro_imagen,...otrosDatos} = newProduct;
+  const handleSave = async () => {
+    const { pro_imagen, ...otrosDatos } = newProduct;
     const formData = new FormData();
-    if(!pro_imagen) return alert("Debe seleccionar una imagen");
+    if (!pro_imagen) return alert("Debe seleccionar una imagen");
     var imagen = pro_imagen.get("pro_imagen");
     formData.append("pro_imagen", imagen);
     Object.entries(otrosDatos).forEach(([key, value]) => {
@@ -94,21 +93,19 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
 
   const postProducto = async (product, token) => {
     const response = await postProduct(product, token);
-    if ( response.status === 200) {
+    if (response.status === 200) {
       onClose();
     } else {
       console.error("Error al agregar el producto en el servidor");
     }
-
-  }
-
+  };
 
   if (!isOpen) return null;
 
   return (
     <div className="modal-overlay">
       <div className="modal-content-product">
-      <span className="modal-close-product-list" onClick={onClose}>
+        <span className="modal-close-product-list" onClick={onClose}>
           &times;
         </span>
         <div className="form-container">
@@ -176,7 +173,7 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
                 <option value="Unidades">Unidad</option>
                 <option value="cubetas">Cubetas</option>
                 <option value="racimos">Racimos</option>
-                <option value="arrobas">Arrobas</option>          
+                <option value="arrobas">Arrobas</option>
               </select>
 
               <label htmlFor="pro_categoria">Categoría:</label>
@@ -213,10 +210,10 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
                 />
               </div>
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="pro_vendedor">Vendedor:</label>
               <ReactSelect
-                defaultValue={{ value: 'Vendedor', label: 'None' }}
+                defaultValue={{ value: "Vendedor", label: "None" }}
                 id="pro_vendedor"
                 name="pro_vendedor"
                 value={{ value: newProduct.pro_vendedor, label: newProduct.pro_vendedor }}
@@ -230,42 +227,51 @@ const ModalAddProducts = ({ isOpen, onClose }) => {
                 styles={{
                   control: (provided) => ({
                     ...provided,
-                    width: '230px', // Cambia el ancho según tus necesidades, p. ej., '300px'
+                    width: "230px", // Cambia el ancho según tus necesidades, p. ej., '300px'
                   }),
                   option: (provided) => ({
                     ...provided,
-                    color: 'black',
+                    color: "black",
                   }),
                 }}
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="pro_estado">Estado:</label>
               <ReactSelect
-                defaultValue={{ value: 'Vendedor', label: 'None' }}
+                defaultValue={{ value: "Vendedor", label: "None" }}
                 id="pro_estado"
                 name="pro_estado"
                 value={{ value: newProduct.pro_estado, label: newProduct.pro_estado }}
                 onChange={(selectedOption) => {
                   setNewProduct({ ...newProduct, pro_estado: selectedOption.value });
                 }}
-                options={['Disponible','No disponible','Reservado'].map((estado) => ({
+                options={["Disponible", "No disponible", "Reservado"].map((estado) => ({
                   value: estado,
                   label: estado,
                 }))}
                 styles={{
                   control: (provided) => ({
                     ...provided,
-                    width: '230px',
-                     // Cambia el ancho según tus necesidades, p. ej., '300px'
+                    width: "230px", // Cambia el ancho según tus necesidades, p. ej., '300px'
                   }),
                   option: (provided) => ({
                     ...provided,
-                    color: 'black',
+                    color: "black",
                   }),
                 }}
               />
             </div>
+            <div>
+                <label htmlFor="pro_numero">Número vendedor</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  name="pro_numero"
+                  value={newProduct.pro_numero}
+                  onChange={handleInputChange}
+                />
+              </div>
             <div className="form-group-pair">
               <div>
                 <label htmlFor="pro_imagen">Imagen</label>

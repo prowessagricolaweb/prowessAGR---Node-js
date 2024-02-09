@@ -9,8 +9,8 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
     pro_medida: "",
     pro_descripcion: "",
     pro_categoria: "",
-    pro_vendedor: ""
-
+    pro_vendedor: "",
+    pro_numero: "", // Nuevo atributo pro_numero
   };
 
   const [editedProduct, setEditedProduct] = useState(initialProduct);
@@ -87,20 +87,19 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
               </div>
             </div>
             <div className='btn-add-container'>
-
-            <label htmlFor="pro_medida">Medida:</label>
-                  <select
-                    id="pro_medida"
-                    name="pro_medida"
-                    value={editedProduct.pro_medida}
-                    onChange={handleInputChange}
-                  >
-                    <option value="Kg">Kilogramo</option>
-                    <option value="Gr">Gramo</option>
-                    <option value="Lb">Libra</option>
-                    <option value="Oz">Onza</option>
-                    <option value="Ud">Unidad</option>
-                  </select>
+              <label htmlFor="pro_medida">Medida:</label>
+              <select
+                id="pro_medida"
+                name="pro_medida"
+                value={editedProduct.pro_medida}
+                onChange={handleInputChange}
+              >
+                <option value="Kg">Kilogramo</option>
+                <option value="Gr">Gramo</option>
+                <option value="Lb">Libra</option>
+                <option value="Oz">Onza</option>
+                <option value="Ud">Unidad</option>
+              </select>
                   
               <label htmlFor="pro_categoria">Categoría:</label>
               <select
@@ -110,48 +109,59 @@ const ModalEditProduct = ({ isOpen, onClose, productToEdit, handleEdit, categori
                 onChange={handleInputChange}
               >
                 <option value="Fruta">Fruta</option>
-                    <option value="Grano">Grano</option>
-                    <option value="Verdura">Verdura</option>
-                    <option value="Fruto seco">Fruto seco</option>
-                    <option value="Hortaliza">Hortaliza</option>
-                    <option value="Tubérculo">Tubérculo</option>
+                <option value="Grano">Grano</option>
+                <option value="Verdura">Verdura</option>
+                <option value="Fruto seco">Fruto seco</option>
+                <option value="Hortaliza">Hortaliza</option>
+                <option value="Tubérculo">Tubérculo</option>
               </select>              
-              </div>
+            </div>
 
-              <div class="form-group">
+            <div className="form-group">
               <label htmlFor="pro_vendedor">Vendedor:</label>
               <ReactSelect
-                  defaultValue={{ value: 'Vendedor', label: 'Ninguno' }}
-                  id="pro_vendedor"
-                  name="pro_vendedor"
-                  value={{ value: editedProduct.pro_vendedor, label: editedProduct.pro_vendedor }}
-                  onChange={(selectedOption) => {
-                    setEditedProduct({ ...editedProduct, pro_vendedor: selectedOption.value });
-                  }}
-                  options={vendedores.map((vendedor) => ({
-                    value: vendedor.name,
-                    label: vendedor.name,
-                  }))}
-                  styles={{
-                    control: (provided) => ({
-                      ...provided,
-                      width: '200px',
-                    }),
-                    option: (provided, state) => ({
-                      ...provided,
-                      backgroundColor: state.isSelected ? '#007bff' : '#fff',
-                      color: state.isSelected ? '#fff' : '#000',
-                      ':hover': {
-                        backgroundColor: '#007bff',
-                        color: '#fff',
-                      },
-                    }),
-                    menu: (provided) => ({
-                      ...provided,
-                      maxHeight: '200px', 
-                    }),
-                  }}
-                  />
+                defaultValue={{ value: 'Vendedor', label: 'Ninguno' }}
+                id="pro_vendedor"
+                name="pro_vendedor"
+                value={{ value: editedProduct.pro_vendedor, label: editedProduct.pro_vendedor }}
+                onChange={(selectedOption) => {
+                  setEditedProduct({ ...editedProduct, pro_vendedor: selectedOption.value });
+                }}
+                options={vendedores.map((vendedor) => ({
+                  value: vendedor.name,
+                  label: vendedor.name,
+                }))}
+                styles={{
+                  control: (provided) => ({
+                    ...provided,
+                    width: '200px',
+                  }),
+                  option: (provided, state) => ({
+                    ...provided,
+                    backgroundColor: state.isSelected ? '#007bff' : '#fff',
+                    color: state.isSelected ? '#fff' : '#000',
+                    ':hover': {
+                      backgroundColor: '#007bff',
+                      color: '#fff',
+                    },
+                  }),
+                  menu: (provided) => ({
+                    ...provided,
+                    maxHeight: '200px', 
+                  }),
+                }}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="pro_numero">Número de Vendedor:</label>
+              <input
+                type="text"
+                className="form-control"
+                name="pro_numero"
+                value={editedProduct.pro_numero}
+                onChange={handleInputChange}
+              />
             </div>
 
             <div className="form-group">
