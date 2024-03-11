@@ -9,9 +9,10 @@ import { getTokenData } from '../services/auth';
 import { getUserData } from '../services/user.js';
 import whatsapp from '../imagenes/whatsapp.png';
 import { checkToken } from '../services/auth';
-import { handleSendEmail } from './enviarCorreo';
 
 
+
+import { Resend } from 'resend';
 
 
 
@@ -21,6 +22,7 @@ function PagoPage({ cart, vendor, clearCart, orden }) {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   const token = localStorage.getItem("token");
+  const resend = new Resend('re_CVr7sDxZ_LdgtcXgTFKWQbDRdLpz723qA');
 
   useEffect(() => {
     const obtenerDatos = async () => {
@@ -72,8 +74,22 @@ function PagoPage({ cart, vendor, clearCart, orden }) {
     setRedirect(true);
   };
 
-  const handleSendEmailButtonClick = () => {
-    handleSendEmail();
+
+  const handleSendEmail = async () => {
+    const { data, error } = await resend.emails.send({
+      from: 'Acme <onboarding@resend.dev>',
+      to: [usuario.email], // Usar la dirección de correo del usuario obtenida en el estado
+      subject: 'Confirmación de compra',
+      html: '<strong>¡Gracias por tu compra!</strong>',
+    });
+  
+    if (error) {
+      console.error('Error al enviar el correo electrónico:', error);
+      // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+    } else {
+      console.log('Correo electrónico enviado con éxito:', data);
+      // Puedes mostrar un mensaje de éxito al usuario si lo deseas
+    }
   };
 
   const handleShareButtonClick = () => {

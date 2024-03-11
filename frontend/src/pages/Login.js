@@ -24,8 +24,8 @@ function Login(props) {
       }, 1500);
       setIsLoggedIn(true);
     } else {
-      setMessage(res.response.data.message)
-      console.log('Usuario no logueado', res.response.data.message);
+      setMessage()
+      console.log();
     }
   }
 
