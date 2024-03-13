@@ -1,14 +1,19 @@
 import express from "express";
 import cors from "cors";
 import dotenv from 'dotenv';
-import multer from 'multer';
+
 import routes from "./Src/routes.js";
 
 
 const app = express();
 app.use(express.json())
-app.use(cors());
+
 dotenv.config();
+app.use(cors({
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  optionsSuccessStatus: 204
+}));
 const port = process.env.PORT || 5000;
 app.setMaxListeners(0);
 

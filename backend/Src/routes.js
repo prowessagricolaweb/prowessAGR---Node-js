@@ -9,6 +9,8 @@ import supplierRoute from './routes/supplierRoute.js';
 import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
 import * as tokencontroller from './middleware/verifyToken.js';
+// import router from './routes/mailerRoute.js';
+// import mailerRoute from './routes/mailerRoute.js';
 const routes = express.Router();
 
 routes.use('/fb/categoria', categoriaroute);
@@ -20,5 +22,6 @@ routes.use('/fb/vendedor',sellerRoute);
 routes.use('/fb/proveedor',supplierRoute);
 routes.use('/fb/usuario',userRoute);
 routes.use('/fb/auth',authRoute);
+// routes.use('/fb/send',mailerRoute);
 
 export default routes;
